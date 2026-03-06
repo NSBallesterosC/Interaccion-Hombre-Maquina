@@ -1,0 +1,150 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#ffffff;
+color:#3b0b0b;
+}
+
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#aa220a;
+color:rgb(255, 255, 255);
+}
+
+.navbar img
+{
+width: 100px;
+height: 100px; 
+display: flex;
+}
+
+.menu{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+
+.welcome{
+background:url("https://tse3.mm.bing.net/th/id/OIP.80VPc95uVTEztOJc_vIpZwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3") center/cover;
+height:400px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.welcome h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.welcome button{
+padding:10px 20px;
+border:none;
+background:#6d4c41;
+color:white;
+cursor:pointer;
+}
+
+
+.cards{
+padding:60px 20px;
+text-align:center;
+background:rgb(148, 96, 0);
+}
+
+.card-container{
+display:flex;
+gap:20px;
+margin-top:30px;
+justify-content:center;
+}
+
+.card{
+background:#a74c01;
+padding:20px;
+width:250px;
+border-radius:10px;
+}
+
+
+
+.mission{
+padding:60px;
+text-align:center;
+background:#cf5300;
+}
+
+
+
+.testimonios{
+padding:60px;
+text-align:center;
+background:rgb(161, 8, 8);
+}
+
+.testimonios-container{
+display:flex;
+gap:20px;
+justify-content:center;
+margin-top:20px;
+}
+
+.testimonio{
+background:#ff9797;
+padding:20px;
+width:250px;
+border-radius:10px;
+}
+
+
+.bio{
+padding:60px;
+text-align:center;
+background:#d84d07;
+}
+
+
+
+.contacto{
+padding:60px;
+text-align:center;
+background:rgb(204, 166, 134);
+}
+
+
+.redes{
+margin-top:20px;
+}
+
+.redes a{
+margin:10px;
+text-decoration:none;
+color:#6d4c41;
+font-weight:bold;
+}
+
+
+footer{
+background:#3e2723;
+color:white;
+text-align:center;
+padding:20px;
+}
