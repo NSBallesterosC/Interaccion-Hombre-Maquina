@@ -1,23 +1,44 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
 
-const canvas = document.querySelector('#scene3');
-const scene = new THREE.Scene();
+function crearEscena(canvasId, colorObjeto) {
+  const canvas = document.getElementById(canvasId);
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/300, 0.1, 1000);
-camera.position.z = 4;
+  // Escena
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000000);
 
-const renderer = new THREE.WebGLRenderer({canvas});
-renderer.setSize(window.innerWidth, 300);
+  // Camara
+  const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
+  camera.position.z = 4;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+  const renderer = new THREE.WebGLRenderer({ canvas });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-// Dona
-const geometry = new THREE.TorusGeometry(1, 0.3, 16, 100);
-const material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
-const torus = new THREE.Mesh(geometry, material);
-scene.add(torus);
+  // Luz
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
-function animate() {
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.01;
-  renderer.render(scene, camera);
+  // Dona
+  const geometry = new THREE.TorusGeometry(1, 0.35, 32, 100);
+  const material = new THREE.MeshStandardMaterial({
+    color: colorObjeto,     
+    emissive: colorObjeto,  
+  });
+
+  const torus = new THREE.Mesh(geometry, material);
+  scene.add(torus);
+
+  // Animacion
+  function animate() {
+    requestAnimationFrame(animate);
+
+    torus.rotation.x += 0.01;
+    torus.rotation.y += 0.01;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
 }
-renderer.setAnimationLoop(animate);
+
+crearEscena("scene3", 0xff00ff); 
