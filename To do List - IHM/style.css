@@ -1,0 +1,231 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #edf1f7;
+    color: #111827;
+}
+
+/* Contenedor principal */
+.contenedor {
+    width: 92%;
+    max-width: 1100px;
+    margin: 35px auto;
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+header p {
+    color: #4b5563;
+    margin-top: 8px;
+}
+
+/* Formulario de tareas */
+.formulario {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.formulario input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 16px;
+    outline: none;
+}
+
+.formulario input:focus {
+    border-color: #2563eb;
+}
+
+/* Botones de categorías */
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.categorias button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: bold;
+}
+
+/* Esta clase se activa desde Vue cuando una categoría está seleccionada */
+.categorias button.activo {
+    background: #111827;
+    color: white;
+}
+
+.btn-agregar {
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-agregar:hover {
+    background: #1d4ed8;
+}
+
+.mensaje {
+    color: #dc2626;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+/* Tablero principal */
+.tablero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+}
+
+/* Columnas */
+.columna {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.columna h2 {
+    margin-top: 0;
+}
+
+/* Grupos de tareas pendientes */
+.grupo {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 16px;
+    border-left: 6px solid #94a3b8;
+}
+
+.grupo h3 {
+    margin-top: 0;
+}
+
+.grupo.importante {
+    border-left-color: #ef4444;
+}
+
+.grupo.urgente {
+    border-left-color: #f59e0b;
+}
+
+.grupo.normal {
+    border-left-color: #3b82f6;
+}
+
+/* Cada tarea pendiente */
+.tarea {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.texto-tarea {
+    flex: 1;
+    text-align: left;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    color: #111827;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+}
+
+.texto-tarea:hover {
+    background: #eff6ff;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background: #ef4444;
+    color: white;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-eliminar:hover {
+    background: #dc2626;
+}
+
+/* Tareas realizadas */
+.tarea-realizada {
+    background: #ecfdf5;
+    border-left: 6px solid #22c55e;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tarea-realizada div {
+    flex: 1;
+}
+
+.tarea-realizada strong {
+    display: block;
+    text-decoration: line-through;
+}
+
+.tarea-realizada small {
+    color: #047857;
+}
+
+/* Botón para devolver una tarea a pendientes */
+.btn-volver {
+    background: #64748b;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-volver:hover {
+    background: #475569;
+}
+
+.vacio {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Para que en pantallas pequeñas se vea una columna debajo de la otra */
+@media (max-width: 800px) {
+    .tablero {
+        grid-template-columns: 1fr;
+    }
+}
