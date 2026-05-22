@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Medicinas Indigenas</title>
+
+  <!-- Librería Vue.js -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Barra de descuento -->
+    <div class="barra" v-if="verBarra">
+      <p>¡SUPER PROMOCION!, Paga 3 leva 1 SOLO POR HOY</p>
+      <a href="#"> Compra Ahora <i class='bx bx-right-arrow-alt'></i></a>
+      <button @click="cerrarBarra">x</button>
+    </div>
+
+    <!-- Menú principal -->
+    <header class="header">
+      <h1>Indigenas Productos.</h1>
+
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Tienda</a>
+        <a href="#">Productos</a>
+        <a href="#">Contacto</a>
+      </nav>
+
+      <div class="carrito">
+        <span>Carrito</span>
+        <b>{{ carrito }}</b>
+      </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+      <div class="texto-banner">
+        <p>Inicio > Tienda</p>
+        <h2>Indigenas Shop</h2>
+        <h3>Compra ahora, y recibe el producto de la mano de Náhuatl, Navajo o cherokee.</h3>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <main class="contenedor">
+
+      <!-- Filtros -->
+      <section class="filtros">
+
+        <div>
+          <label>CATEGORÍAS DE LOS PRODUCTOS I - LEGALES</label>
+          <select v-model="categoria">
+            <option value="todos">Todos</option>
+            <option value="Medicinal">Medicinal</option>
+            <option value="Para curar">Para curar</option>
+            <option value="El sueño">El sueño</option>
+            <option value="Hierbita Maliciosa">Hierbita Maliciosa</option>
+          </select>
+        </div>
+
+        <div>
+          <label>PRECIO PARA PAGAR</label>
+          <select v-model="precio">
+            <option value="todos">Todos los precios</option>
+            <option value="bajo">$0 mil - $1,000.000</option>
+            <option value="medio">$1,00000.0000 - $4,000000.000</option>
+            <option value="alto">$4,00000.0001+</option>
+          </select>
+        </div>
+
+        <div class="orden">
+          <label>ORDENACIÓN</label>
+          <select v-model="orden">
+            <option value="normal">Normal</option>
+            <option value="menor">Menor precio</option>
+            <option value="mayor">Mayor precio</option>
+          </select>
+        </div>
+
+      </section>
+
+      <!-- Productos -->
+      <section class="productos">
+
+        <article class="producto" v-for="producto in productosFiltrados" :key="producto.id">
+
+          <div class="imagen-producto">
+            <span v-if="producto.nuevo" class="nuevo">NEW</span>
+            <span v-if="producto.descuento" class="descuento">-{{ producto.descuento }}%</span>
+
+            <img :src="producto.imagen" :alt="producto.nombre">
+          </div>
+
+          <div class="info-producto">
+            <p class="estrellas">★★★★★</p>
+
+            <h2>{{ producto.nombre }}</h2>
+
+            <p class="precio">
+              ${{ producto.precio }}
+              <span v-if="producto.precioAnterior">${{ producto.precioAnterior }}</span>
+            </p>
+
+            <p class="descripcion">
+              {{ producto.descripcion }}
+            </p>
+
+            <button class="btn-carrito" @click="agregarCarrito">
+              Añadir al carrito
+            </button>
+
+            <button class="btn-deseos">
+              lISTA DE MIIS DESEOS :D
+            </button>
+          </div>
+
+        </article>
+
+      </section>
+
+      <p class="sin-productos" v-if="productosFiltrados.length === 0">
+        No hay productos disponibles con eso, intenta con otra tienda que no venda productos indigenas pq es la competencia:D
+      </p>
+
+    </main>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <h2>Únete a nuestra sevatica indigena</h2>
+      <p>Recibe ofertas como el 0,000001% del precio.</p>
+
+      <form @submit.prevent="registrarCorreo">
+        <input type="email" placeholder="Correo electrónico" v-model="correo">
+        <button>Registrarme ahora!!</button>
+      </form>
+
+      <small v-if="mensajeCorreo !== ''">{{ mensajeCorreo }}</small>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-arriba">
+        <h2>IndigenIngenio</h2>
+        <p>Tienda de productos indigenas</p>
+
+        <nav>
+          <a href="#">Inicio</a>
+          <a href="#">Tienda</a>
+          <a href="#">Productos I - LEGALES</a>
+          <a href="#">Blog´de productos indigenas</a>
+          <a href="#">Contacto</a>
+        </nav>
+      </div>
+
+      <div class="footer-abajo">
+        <p>Copyright 2026 IndigenIngenio. Todos los derechos reservados.</p>
+        <p>Política de privacidad | Términos de uso | Debes pagar por ver la pagina (Ya debes 10.000000)</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
