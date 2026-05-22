@@ -65,8 +65,8 @@ createApp({
           categoria: 'Para curar',
           nuevo: false,
           descuento: null,
-          imagen: 'img/game.png',
-          descripcion: 'image/1080/3C079DAE13EF4B14AC17E45B9FF1366C.jpeg'
+          imagen: 'https://tse3.mm.bing.net/th/id/OIP.0-I5_NXJJ6LaCfa6Ex63TwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+          descripcion: 'Esta tambien es milagrosa :3'
         },
         {
           id: 6,
