@@ -1,6 +1,6 @@
-/* Estilos generales */
 * {
     box-sizing: border-box;
+    font-family: Lucida Bright, serif;
 }
 
 body {
@@ -10,11 +10,77 @@ body {
     color: #111827;
 }
 
-/* Contenedor principal */
+/* Video de fondo */
+.video-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+/*Muisca*/
+.musica {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.musica audio {
+    width: 250px;
+}
+
+/* stickers flotantes */
+.sticker {
+    position: fixed;
+    width: 80px;
+    z-index: 1;
+    opacity: 0.9;
+    animation: flotar 6s infinite alternate;
+}
+
+/* posición de cada sticker */
+.sticker1 {
+    top: 120px;
+    left: 40px;
+}
+
+
+    .sticker5 {
+        bottom: 150px;
+        right: 100px;
+        animation-duration: 9s;
+    }
+
+/* animación de movimiento */
+@keyframes flotar {
+    from {
+        transform: translateX(0px) translateY(0px);
+    }
+
+    to {
+        transform: translateX(60px) translateY(-50px);
+    }
+}
+
+/* Capa oscura encima para el video */
+.capa-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: -1;
+}
+
+/* principal */
 .contenedor {
     width: 92%;
     max-width: 1100px;
     margin: 35px auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* Encabezado */
@@ -26,20 +92,23 @@ header {
 header h1 {
     margin: 0;
     font-size: 34px;
+    color: white;
 }
 
 header p {
-    color: #4b5563;
+    color: #e5e7eb;
     margin-top: 8px;
 }
 
-/* Formulario de tareas */
+/* formulario tareas */
 .formulario {
-    background: white;
+    background: rgba(255, 255, 255, 0.18);
     padding: 22px;
     border-radius: 18px;
     margin-bottom: 25px;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
 
 .formulario input {
@@ -51,11 +120,7 @@ header p {
     outline: none;
 }
 
-.formulario input:focus {
-    border-color: #2563eb;
-}
-
-/* Botones de categorías */
+/* Botones categorías */
 .categorias {
     display: flex;
     flex-wrap: wrap;
@@ -64,11 +129,6 @@ header p {
     margin-bottom: 15px;
 }
 
-button {
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-}
 
 .categorias button {
     padding: 10px 14px;
@@ -77,32 +137,45 @@ button {
     color: #111827;
     font-weight: bold;
 }
-
-/* Esta clase se activa desde Vue cuando una categoría está seleccionada */
+/* Esto es para marcar la tarea seleccionada */
 .categorias button.activo {
     background: #111827;
     color: white;
 }
 
+.tarea-realizada strong {
+    color: #222;
+}
+
+.tarea-realizada small {
+    color: #555;
+} 
 .btn-agregar {
     padding: 12px 18px;
     border-radius: 12px;
-    background: #2563eb;
+    background: #1f9a9e;
     color: white;
     font-weight: bold;
 }
 
-.btn-agregar:hover {
-    background: #1d4ed8;
+.caja-texto,
+input {
+    background: rgba(255, 255, 255, 0.20);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .mensaje {
-    color: #dc2626;
+    color: #ff7575;
     font-weight: bold;
     margin-bottom: 0;
 }
 
-/* Tablero principal */
+/* Tareas Realizadas*/
 .tablero {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -111,27 +184,22 @@ button {
 
 /* Columnas */
 .columna {
-    background: white;
+    background: rgba(255, 255, 255, 0.18);
     padding: 20px;
     border-radius: 18px;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-}
-
-.columna h2 {
-    margin-top: 0;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
 
 /* Grupos de tareas pendientes */
 .grupo {
-    background: #f8fafc;
+    background: rgba(255, 255, 255, 0.12);
     padding: 15px;
     border-radius: 15px;
-    margin-bottom: 16px;
-    border-left: 6px solid #94a3b8;
-}
-
-.grupo h3 {
-    margin-top: 0;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
 }
 
 .grupo.importante {
@@ -143,7 +211,7 @@ button {
 }
 
 .grupo.normal {
-    border-left-color: #3b82f6;
+    border-left-color: #eaf63b;
 }
 
 /* Cada tarea pendiente */
@@ -156,28 +224,25 @@ button {
 .texto-tarea {
     flex: 1;
     text-align: left;
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 12px;
     border-radius: 10px;
-    color: #111827;
+    color: #000000;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
 }
 
-.texto-tarea:hover {
-    background: #eff6ff;
-}
 
 /* Botón eliminar */
 .btn-eliminar {
-    background: #ef4444;
+    background: #fd7878;
     color: white;
     padding: 0 12px;
     border-radius: 10px;
     font-weight: bold;
 }
 
-.btn-eliminar:hover {
-    background: #dc2626;
+h1, h2, h3, p, span, strong, small {
+    color: white;
 }
 
 /* Tareas realizadas */
@@ -201,29 +266,22 @@ button {
     text-decoration: line-through;
 }
 
-.tarea-realizada small {
-    color: #047857;
-}
 
 /* Botón para devolver una tarea a pendientes */
 .btn-volver {
-    background: #64748b;
+    background: #1aa56b;
     color: white;
     padding: 8px 10px;
     border-radius: 10px;
     font-weight: bold;
 }
 
-.btn-volver:hover {
-    background: #475569;
-}
-
 .vacio {
-    color: #6b7280;
+    color: #e2e1e1e5;
     font-size: 14px;
 }
 
-/* Para que en pantallas pequeñas se vea una columna debajo de la otra */
+/* Responsivo */
 @media (max-width: 800px) {
     .tablero {
         grid-template-columns: 1fr;

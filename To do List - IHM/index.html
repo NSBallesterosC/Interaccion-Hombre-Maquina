@@ -5,27 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tareas Vue</title>
 
-    <!-- Librería Vue.js.
-         IMPORTANTE: esta línea debe ir antes de main.js para que Vue exista. -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <!-- Archivo CSS propio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.global.prod.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body>s
 
-    <!-- Todo lo que Vue controla debe estar dentro de este div -->
+    <!-- Video de fondo -->
+    <video class="video-fondo" autoplay muted loop>
+        <source src="fondo.mp4" type="video/mp4">
+    </video>   
+
+    <audio autoplay loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Stickers -->
+    <img src="sticker1.png" class="sticker sticker1">
+    <img src="sticker5.png" class="sticker sticker5">
+
+    <!-- Capa oscura para que el texto se vea mejor -->
+    <div class="capa-fondo"></div>
+
     <div id="app" class="contenedor">
 
         <header>
-            <h1>Lista de tareas</h1>
-            <p>Organiza tus tareas por importancia y márcalas cuando estén listas.</p>
+            <h1>To do list</h1>
+            <p>Para Organizar tus tareas por categorias asi bonito.</p>
         </header>
 
-        <!-- Formulario para agregar tareas -->
         <section class="formulario">
 
-            <!-- v-model conecta el input con la variable nuevaTarea de Vue -->
             <input 
                 type="text"
                 placeholder="Escribe una tarea..."
@@ -33,7 +42,6 @@
                 @keyup.enter="agregarTarea"
             >
 
-            <!-- Botones para escoger la categoría de la tarea -->
             <div class="categorias">
                 <button 
                     @click="cambiarCategoria('importante')"
@@ -54,30 +62,25 @@
                 </button>
             </div>
 
-            <!-- Botón para agregar la tarea -->
             <button class="btn-agregar" @click="agregarTarea">
                 Agregar tarea
             </button>
 
-            <!-- Mensaje de error o aviso -->
             <p class="mensaje" v-if="mensaje !== ''">
                 {{ mensaje }}
             </p>
         </section>
 
-        <!-- Pantalla dividida en dos secciones -->
         <main class="tablero">
 
-            <!-- Sección izquierda: tareas pendientes -->
             <section class="columna">
                 <h2>Tareas pendientes</h2>
 
-                <!-- Subsección de tareas importantes -->
                 <div class="grupo importante">
                     <h3>Importantes</h3>
 
                     <p class="vacio" v-if="tareasImportantes.length === 0">
-                        No hay tareas importantes.
+                        No tener tareas importantes.
                     </p>
 
                     <div 
@@ -85,24 +88,21 @@
                         v-for="tarea in tareasImportantes"
                         :key="tarea.id">
 
-                        <!-- Al hacer clic en la tarea, pasa a realizadas -->
                         <button class="texto-tarea" @click="marcarComoRealizada(tarea.id)">
                             {{ tarea.texto }}
                         </button>
 
-                        <!-- Botón para eliminar la tarea -->
                         <button class="btn-eliminar" @click="eliminarTarea(tarea.id)">
                             X
                         </button>
                     </div>
                 </div>
 
-                <!-- Subsección de tareas urgentes -->
                 <div class="grupo urgente">
                     <h3>Urgentes</h3>
 
                     <p class="vacio" v-if="tareasUrgentes.length === 0">
-                        No hay tareas urgentes.
+                        No existir tareas urgentes.
                     </p>
 
                     <div 
@@ -120,12 +120,11 @@
                     </div>
                 </div>
 
-                <!-- Subsección de tareas no urgentes -->
                 <div class="grupo normal">
                     <h3>No urgentes</h3>
 
                     <p class="vacio" v-if="tareasNormales.length === 0">
-                        No hay tareas no urgentes.
+                        No tener tareas no urgentes.
                     </p>
 
                     <div 
@@ -144,12 +143,11 @@
                 </div>
             </section>
 
-            <!-- Sección derecha: tareas realizadas -->
             <section class="columna">
                 <h2>Tareas realizadas</h2>
 
                 <p class="vacio" v-if="tareasRealizadas.length === 0">
-                    Todavía no hay tareas realizadas.
+                    Todavía no haber tareas realizadas.
                 </p>
 
                 <div 
@@ -162,12 +160,10 @@
                         <small>{{ mostrarCategoria(tarea.categoria) }}</small>
                     </div>
 
-                    <!-- Devuelve la tarea a su sección pendiente -->
                     <button class="btn-volver" @click="devolverAPendientes(tarea.id)">
                         Volver
                     </button>
 
-                    <!-- Elimina la tarea realizada -->
                     <button class="btn-eliminar" @click="eliminarTarea(tarea.id)">
                         X
                     </button>
@@ -177,8 +173,6 @@
         </main>
     </div>
 
-    <!-- Archivo JavaScript.
-         IMPORTANTE: debe llamarse main.js, porque así se llama tu archivo. -->
     <script src="main.js"></script>
 </body>
 </html>
